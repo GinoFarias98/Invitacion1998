@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -229,48 +229,45 @@
 
     <script>
 
-        fetch("https://api.countapi.xyz/hit/juntada-gino/visitas")
+        fetch("https://api.counterapi.dev/v2/gino-fariass-team-3276/first-counter-3276")
             .then(res => res.json())
-            .then(res => {
-                document.getElementById("contador").innerText = res.value
+            .then(data => {
+
+                console.log(data)   // para verificar en consola
+
+                let numero = String(data.value).padStart(6, '0')
+
+                document.getElementById("contador").innerText = numero
+
+            })
+            .catch(err => {
+
+                console.error(err)
+
+                document.getElementById("contador").innerText = "ERROR"
+
             })
 
         function cargarConfirmados() {
 
-            fetch("https://sheetdb.io/api/v1/6zcj9ov3k955d")
+            fetch("https://script.google.com/macros/s/AKfycbzLq8WsI6eSZm192nmKMSNvPYQvGVnrE85U_CAyhZ_7eanTYjqVudKDZ95p0Oyu9rP7/exec")
                 .then(res => res.json())
                 .then(data => {
 
                     let tabla = document.getElementById("confirmados")
-
                     tabla.innerHTML = ""
-
-                    let total = 0
-                    let casas = 0
 
                     data.forEach(p => {
 
-                        let asistencia = p.Asistencia
-                        let casa = p.PoneCasa
-
-                        if (asistencia == "chi") total++
-                        if (casa == "ci") casas++
-
-                        let iconoCasa = casa == "ci" ? "🏠" : "-"
-                        let iconoAsistencia = asistencia == "chi" ? "✅" : "❌"
-
                         tabla.innerHTML += `
                         <tr>
-                        <td>${p.Nombre} <span class="new">NEW</span></td>
-                        <td>${iconoAsistencia}</td>
-                        <td>${iconoCasa}</td>
+                        <td>${p["1️⃣ Nombre / Apodo"]}</td>
+                        <td>${p["Asistencia"]}</td>
+                        <td>${p["PoneCasa"]}</td>
                         </tr>
                         `
 
                     })
-
-                    document.getElementById("total").innerText = total
-                    document.getElementById("casas").innerText = casas
 
                 })
 
@@ -278,7 +275,7 @@
 
         cargarConfirmados()
 
-        setInterval(cargarConfirmados, 5000)
+        setInterval(cargarConfirmados, 15000)
 
     </script>
 
